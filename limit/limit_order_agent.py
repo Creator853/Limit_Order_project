@@ -18,6 +18,15 @@ class LimitOrderAgent(PriceListener):
 
     def on_price_tick(self, product_id: str, price: float) -> None:
         for order in self.orders:
+            
+            #FOR IBM STATIC CASE :
+            
+            #if order['product_id'] == "IBM":
+                #if order['buy'] and price <= 100:
+                     #order[amount] = 1000
+                     #self.execution_client.buy(product_id, order['amount'])
+                     #self.orders.remove(order)
+            
             if order['product_id'] == product_id:
                 if order['buy'] and price <= order['limit']:
                     self.execution_client.buy(product_id, order['amount'])
